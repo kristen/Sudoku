@@ -14,6 +14,7 @@
 		7B78B7471BCA08DA00C2298A /* SudokuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78B7461BCA08DA00C2298A /* SudokuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		7B78B74B1BCA0B1E00C2298A /* SudokuCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78B74A1BCA0B1E00C2298A /* SudokuCellView.swift */; settings = {ASSET_TAGS = (); }; };
 		7B78B74D1BCA0B6300C2298A /* SudokuGameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78B74C1BCA0B6300C2298A /* SudokuGameBoardView.swift */; settings = {ASSET_TAGS = (); }; };
+		7B78B7511BCA1F4900C2298A /* InputNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78B7501BCA1F4900C2298A /* InputNumberButton.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7B78B7461BCA08DA00C2298A /* SudokuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SudokuViewController.swift; path = ViewControllers/SudokuViewController.swift; sourceTree = "<group>"; };
 		7B78B74A1BCA0B1E00C2298A /* SudokuCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SudokuCellView.swift; path = Views/SudokuCellView.swift; sourceTree = "<group>"; };
 		7B78B74C1BCA0B6300C2298A /* SudokuGameBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SudokuGameBoardView.swift; path = Views/SudokuGameBoardView.swift; sourceTree = "<group>"; };
+		7B78B7501BCA1F4900C2298A /* InputNumberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputNumberButton.swift; path = Views/InputNumberButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				7B78B74A1BCA0B1E00C2298A /* SudokuCellView.swift */,
 				7B78B74C1BCA0B6300C2298A /* SudokuGameBoardView.swift */,
+				7B78B7501BCA1F4900C2298A /* InputNumberButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B78B7511BCA1F4900C2298A /* InputNumberButton.swift in Sources */,
 				7B4E9FF21BC411F500FF75B4 /* AppDelegate.swift in Sources */,
 				7B78B74B1BCA0B1E00C2298A /* SudokuCellView.swift in Sources */,
 				7B78B74D1BCA0B6300C2298A /* SudokuGameBoardView.swift in Sources */,
