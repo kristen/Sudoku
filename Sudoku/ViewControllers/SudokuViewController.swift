@@ -18,7 +18,7 @@ class SudokuViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.edgesForExtendedLayout = UIRectEdge.None
         self.title = "Sudoku"
-        self.sudokuGameBoard = SudokuGameBoardView()
+        self.sudokuGameBoard = SudokuGameBoardView(game: Sudoku())
         self.view.addSubview(sudokuGameBoard)
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class SudokuGameBoardView: UIView {
     
-    init() {
+    init(game: Sudoku) {
         super.init(frame: UIScreen.mainScreen().bounds)
         
         let gameBoardSize = UIScreen.mainScreen().bounds.width
@@ -52,7 +52,7 @@ class SudokuGameBoardView: UIView {
             for column in 0...8 {
                 let yPosition = CGFloat(column) * cellSize + CGFloat(column) * spaceBetweenCells
                 let cellFrame = CGRectMake(xPosition, yPosition, cellSize, cellSize)
-                let sudokuCellView = SudokuCellView(frame: cellFrame)
+                let sudokuCellView = SudokuCellView(frame: cellFrame, sudokuCell: game.solution[column][row])
                 self.addSubview(sudokuCellView)
 
             }

@@ -8,11 +8,21 @@
 
 import UIKit
 
-class SudokuCellView: UIView {
+class SudokuCellView: UIButton {
     
-    override init(frame: CGRect) {
+    let sudokuCell: SudokuCell
+    
+    init(frame: CGRect, sudokuCell: SudokuCell) {
+        self.sudokuCell = sudokuCell
         super.init(frame: frame)
         self.backgroundColor = UIColor.purpleColor()
+        
+        if (sudokuCell.given) {
+            self.setTitle(String(self.sudokuCell.number), forState: UIControlState.Normal)
+        }
+
+        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.titleLabel!.adjustsFontSizeToFitWidth = true
     }
 
     required init?(coder aDecoder: NSCoder) {

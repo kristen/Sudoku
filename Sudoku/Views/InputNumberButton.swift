@@ -10,7 +10,7 @@ import UIKit
 
 class InputNumberButton: UIButton {
 
-    let number: Int!
+    let number: Int
     
     init(frame: CGRect, number: Int) {
         self.number = number
