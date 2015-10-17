@@ -16,6 +16,9 @@ protocol SudokuGameBoardViewDelegate: class {
 class SudokuGameBoardView: UIView {
     
     var delegate: SudokuGameBoardViewDelegate?
+    var displayTimeLabel: UILabel!
+    var startTime = NSTimeInterval()
+    var timer = NSTimer()
     
     init(game: Sudoku) {
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -66,9 +69,45 @@ class SudokuGameBoardView: UIView {
             }
         }
         
+        self.displayTimeLabel = UILabel(frame: CGRectMake(0, numberButtonYPosition + 40, 100, 50))
+        self.displayTimeLabel.text = "00:00"
+        self.addSubview(self.displayTimeLabel)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateTime() {
+        
+        let currentTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        //Find the difference between current time and start time.
+        
+        var elapsedTime: NSTimeInterval = currentTime - startTime
+        
+        //calculate the minutes in elapsed time.
+        
+        let minutes = UInt8(elapsedTime / 60.0)
+        
+        elapsedTime -= (NSTimeInterval(minutes) * 60)
+        
+        //calculate the seconds in elapsed time.
+        
+        let seconds = UInt8(elapsedTime)
+        
+        elapsedTime -= NSTimeInterval(seconds)
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        
+        //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        
+        displayTimeLabel.text = "\(strMinutes):\(strSeconds)"
+        
     }
 }
