@@ -34,16 +34,19 @@ class SudokuViewController: UIViewController, SudokuGameBoardViewDelegate {
     
     func inputNumberButtonSelected(sender: InputNumberButton) {
         print("inputNumberButtonSelected")
+        
         if let currentSelectedCell = currentSelectedCell {
-            if let currentUserAnswer = currentSelectedCell.value {
-                if (currentUserAnswer == sender.number) {
-                    currentSelectedCell.value = .None
+            if !currentSelectedCell.givenCell! {
+                if let currentUserAnswer = currentSelectedCell.value {
+                    if (currentUserAnswer == sender.number) {
+                        currentSelectedCell.value = .None
+                    } else {
+                        currentSelectedCell.value = sender.number
+                    }
                 } else {
                     currentSelectedCell.value = sender.number
+                    
                 }
-            } else {
-                currentSelectedCell.value = sender.number
-
             }
         }
 
