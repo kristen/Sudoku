@@ -10,10 +10,28 @@ import UIKit
 
 class SudokuCellButton: UIButton {
     
-    let sudokuCell: SudokuCell
-    var userAnswer: Int? {
+    // TODO remove when done
+    var sudokuCell: SudokuCell? {
         didSet {
-            if case let number? = userAnswer {
+            self.givenCell = sudokuCell!.given
+            if self.givenCell! {
+                self.value = sudokuCell!.number
+            } else {
+                self.value = .None
+            }
+            if let value = self.value {
+                self.setTitle(String(value), forState: UIControlState.Normal)
+                self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            } else {
+                self.setTitleColor(UIColor.redColor(), forState: .Normal)
+            }
+        }
+    }
+    
+    var givenCell: Bool?
+    var value: Int? {
+        didSet {
+            if let number = value {
                 self.setTitle(String(number), forState: .Normal)
             } else {
                 self.setTitle("", forState: .Normal)
@@ -22,19 +40,9 @@ class SudokuCellButton: UIButton {
         }
     }
     
-    init(frame: CGRect, sudokuCell: SudokuCell) {
-        self.sudokuCell = sudokuCell
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.purpleColor()
-        
-        if (sudokuCell.given) {
-            self.setTitle(String(self.sudokuCell.number), forState: UIControlState.Normal)
-            self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-
-        } else {
-            self.setTitleColor(UIColor.redColor(), forState: .Normal)
-        }
-        
         self.layer.borderWidth = 0
         self.layer.borderColor = UIColor.yellowColor().CGColor
         

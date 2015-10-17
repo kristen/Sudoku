@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol SudokuGameBoardViewDelegate: class {
+    func inputNumberButtonSelected(sender: InputNumberButton)
+    func sudokuCellButtonSelected(sender: SudokuCellButton)
+}
+
 class SudokuGameBoardView: UIView {
-    var currentSelectedCell: SudokuCellButton?
+    
+    var delegate: SudokuGameBoardViewDelegate?
     
     init(game: Sudoku) {
         super.init(frame: UIScreen.mainScreen().bounds)
@@ -47,16 +53,16 @@ class SudokuGameBoardView: UIView {
             let numberButtonFrame = CGRectMake(xPosition, numberButtonYPosition, cellSize, cellSize)
             let inputButton = InputNumberButton(frame: numberButtonFrame, number: row + 1)
             
-            inputButton.addTarget(self, action: "click:", forControlEvents: UIControlEvents.TouchUpInside)
+            inputButton.addTarget(self.delegate, action: "inputNumberButtonSelected:", forControlEvents: UIControlEvents.TouchUpInside)
             self.addSubview(inputButton)
             
             for column in 0...8 {
                 let yPosition = CGFloat(column) * cellSize + CGFloat(column) * spaceBetweenCells
                 let cellFrame = CGRectMake(xPosition, yPosition, cellSize, cellSize)
-                let sudokuCellView = SudokuCellButton(frame: cellFrame, sudokuCell: game.solution[column][row])
-                sudokuCellView.addTarget(self, action: "selectGameboardCell:", forControlEvents: UIControlEvents.TouchUpInside)
+                let sudokuCellView = SudokuCellButton(frame: cellFrame)
+                sudokuCellView.sudokuCell = game.solution[column][row]
+                sudokuCellView.addTarget(self.delegate, action: "sudokuCellButtonSelected:", forControlEvents: UIControlEvents.TouchUpInside)
                 self.addSubview(sudokuCellView)
-
             }
         }
         
@@ -65,30 +71,4 @@ class SudokuGameBoardView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func click(sender: InputNumberButton) {
-        if let currentSelectedCell = currentSelectedCell {
-            if let currentUserAnswer = currentSelectedCell.userAnswer {
-                if (currentUserAnswer == sender.number) {
-                    currentSelectedCell.userAnswer = .None
-                } else {
-                    currentSelectedCell.userAnswer = sender.number
-                }
-            } else {
-                currentSelectedCell.userAnswer = sender.number
-
-            }
-        }
-        
-        print("input number selected \(sender.number)")
-    }
-    
-    func selectGameboardCell(sender: SudokuCellButton) {
-        currentSelectedCell?.layer.borderWidth = 0
-        currentSelectedCell = sender
-        currentSelectedCell?.layer.borderWidth = 2
-        
-        print("sudoku cell selected \(sender.sudokuCell.number)")
-    }
-    
 }
